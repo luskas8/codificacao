@@ -1,4 +1,3 @@
-import random
 import os
 import decriptar as dc
 import encriptar as ec
@@ -28,7 +27,7 @@ Escolha: """
             exit()
     
 def choiceOne():
-    mensagem = input("Informe sua mensagem: ")
+    mensagem = input("\nInforme sua mensagem: ")
     semiCripto = ec.semiCriptografar(mensagem) #morte ao miojo # Mensagem transformada em ASCII
     
     n = int(input("Informe o número n: ")) # número e da chave pública
@@ -48,29 +47,12 @@ def choiceTwo():
     mensagem = mensagem.split()
     mensagem = [int(i) for i in mensagem]
 
-    d = int(input("Entre com o valor de d (chave privada): "))
+    d = int(input("\nEntre com o valor de d (chave privada): "))
     n = int(input("Entre com o valor de n (chave publica): "))
     
     decript = "".join([chr((i**d) % n) for i in mensagem])
 
     print("Mensagem decriptografada:", decript, "\n")
-
-# Função pede numero E, recebendo o totiente de N
-def getEs(n: int) -> list:
-    Es = []
-    for i in range(2, n):
-        if ((i > 1 and i < n) and (i%n != 0)): Es.append(i)
-    return Es
-    # Verifica de E está de acordo com a regra 1 < e < totienteN. Caso não recursivamente pede novamente
-    # return num if ((num > 1 and num < n) and (num%n != 0)) else getE(n)
-
-# Função verifica se número inteiro n é primo ou não, retornando a resposta desta pergunta
-def isPrimo(n: int) -> bool:
-    for i in range(2, int(n/2)):
-        # i testa os possiveis dividores de n
-        if (n % i == 0): return False
-
-    return True
 
 if __name__ == "__main__":
     main()
