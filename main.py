@@ -1,5 +1,4 @@
 import os
-import decriptar as dc
 import encriptar as ec
 
 def main():
@@ -43,11 +42,11 @@ def choiceOne():
     print("Bloco criptografada: {}\n".format(mensagemCriptografada))
 
 def choiceTwo():
-    mensagem = input("Entre com os blocos, separados por espaco: ")
+    mensagem = input("\nEntre com os blocos, separados por espaco: ")
     mensagem = mensagem.split()
     mensagem = [int(i) for i in mensagem]
 
-    d = int(input("\nEntre com o valor de d (chave privada): "))
+    d = int(input("Entre com o valor de d (chave privada): "))
     n = int(input("Entre com o valor de n (chave publica): "))
     
     decript = "".join([chr((i**d) % n) for i in mensagem])
