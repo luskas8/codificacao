@@ -26,7 +26,6 @@ def criptografar(m: list, e: int, n: int) -> list:
     for i in range(1, len(message)):
         # Se não tiver nada no indice anterior pegasse o indice anterior a este
         if (message[i-1] == None): passed += 1
-
         if (len(message[i-passed]) <= lenN):
             # Calcula quantos espaçoes faltam para compretar o limite de algarismos de n
             lenFaltante = lenN-len(message[i-passed])
@@ -42,20 +41,20 @@ def criptografar(m: list, e: int, n: int) -> list:
             aux = message[i][:lenFaltante]
             message[i-passed].extend(aux)
             for x in range(lenFaltante): message[i].pop(0)
+        passed = 1
 
     # Tira-se os indices None (nulos)
-    newMessege = [number for number in message if number != None]
-    message.pop(len(newMessege)-len(message))
+    newMessege = [number for number in message if number != None and len(number) > 0]
     
     # Transforma as listas em strings
     for i in range(len(newMessege)):
-        message[i] = int("".join(newMessege[i]))
+        newMessege[i] = int("".join(newMessege[i]))
     
     # Transforma strings em números
-    for i in range(len(message)):
-        message[i] = (message[i] ** e) % n
+    for i in range(len(newMessege)):
+        newMessege[i] = (newMessege[i] ** e) % n
 
-    return message
+    return newMessege
 
 def contaAlgarismo(n):
     # Conta quantos algarismos o número n tem
