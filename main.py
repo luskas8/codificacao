@@ -9,7 +9,8 @@ def main():
     options = """O QUE GOSTARIA DE FAZER EM NOSSO PROGRAMA?
 > 1. Encriptografar
 > 2. Decriptografar
-> 0. Sair\n"""
+> 0. Sair\n
+Escolha: """
 
     loop = True # Controla se esta ou não em loop, default: em loop
     escolha = 0 # Controla escolha do usuário
@@ -20,7 +21,7 @@ def main():
         if escolha == 1:
             choiceOne()
         elif escolha == 2:
-            print('2')
+            choiceTwo()
         else:
             os.system('cls' if os.name == 'nt' else 'clear')
             print("Obrigado por usar nosso programa, até uma outra vez :)\n")
@@ -41,6 +42,18 @@ def choiceOne():
     # os.system('cls' if os.name == 'nt' else 'clear')
     print("Chave pública, formato [n, e]: [{},{}]\n".format(n, e))
     print("Bloco criptografada: {}\n".format(mensagemCriptografada))
+
+def choiceTwo():
+    mensagem = input("Entre com os blocos, separados por espaco: ")
+    mensagem = mensagem.split()
+    mensagem = [int(i) for i in mensagem]
+
+    d = int(input("Entre com o valor de d (chave privada): "))
+    n = int(input("Entre com o valor de n (chave publica): "))
+    
+    decript = "".join([chr((i**d) % n) for i in mensagem])
+
+    print("Mensagem decriptografada:", decript, "\n")
 
 # Função pede numero E, recebendo o totiente de N
 def getEs(n: int) -> list:
