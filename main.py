@@ -27,7 +27,6 @@ def main():
             exit()
     
 def choiceOne():
-    
     mensagem = input("Informe sua mensagem: ")
     semiCripto = ec.semiCriptografar(mensagem) #morte ao miojo # Mensagem transformada em ASCII
     
@@ -39,9 +38,9 @@ def choiceOne():
     mensagemCriptografada = ec.criptografar(semiCripto, e, n)
 
     # Limpa a tela e mostra as informações
-    os.system('cls' if os.name == 'nt' else 'clear')
+    # os.system('cls' if os.name == 'nt' else 'clear')
     print("Chave pública, formato [n, e]: [{},{}]\n".format(n, e))
-    print("Mensagem criptografada: {}\n".format(mensagemCriptografada))
+    print("Bloco criptografada: {}\n".format(mensagemCriptografada))
 
 # Função pede numero E, recebendo o totiente de N
 def getEs(n: int) -> list:
