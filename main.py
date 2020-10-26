@@ -49,9 +49,24 @@ def choiceTwo():
     d = int(input("Entre com o valor de d (chave privada): "))
     n = int(input("Entre com o valor de n (chave publica): "))
     
-    decript = "".join([chr((i**d) % n) for i in mensagem])
+    raw_decrypt = "".join([str((i**d) % n) for i in mensagem])
 
-    print("Mensagem decriptografada:", decript, "\n")
+    decrypt = []
+    k = 0
+    i = 0
+    
+    while i < len(raw_decrypt):
+        if int(raw_decrypt[i]) > 1:
+            decrypt.append(int(raw_decrypt[i:i+2]))
+            i += 2
+        else:
+            decrypt.append(int(raw_decrypt[i:i+3]))
+            i += 3
+        k += 1
+            
+    decrypt = "".join([chr(i) for i in decrypt])
+
+    print("Mensagem decriptografada:", decrypt, "\n")
 
 if __name__ == "__main__":
     main()
