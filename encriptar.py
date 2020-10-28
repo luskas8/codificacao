@@ -33,14 +33,33 @@ def criptografar(m: list, e: int, n: int) -> list:
         if (len(message[i]) < lenFaltante):
             # Se o espaço faltante é maior q o indice atual
             # coloca-se ele inteiro no grupo e passa ao indice posterior
-            lenFaltante -= len(message[i])
-            message[i-passed].extend(message[i])
-            message[i] = None
+            # lenFaltante -= len(message[i])
+            for j in range(len(message[i])):
+                if lenFaltante <= 0: break
+                aux = message[i][0]
+                message[i-passed].extend(aux)
+                if (int("".join(message[i-passed])) > n):
+                    message[i-passed].pop(len(message[i-passed])-1)
+                    break
+                else:
+                    message[i].pop(0)
+                    lenFaltante -= 1
+                    if not message[i]: message[i] = None
+            # message[i-passed].extend(message[i])
+            # message[i] = None
         else:
-            # Caso falso, passa-se todos os espaços que são necessários
-            aux = message[i][:lenFaltante]
-            message[i-passed].extend(aux)
-            for x in range(lenFaltante): message[i].pop(0)
+        # Caso falso, passa-se todos os espaços que são necessários
+            while lenFaltante > 0:
+                aux = message[i][0]
+                message[i-passed].extend(aux)
+                if (int("".join(message[i-passed])) > n):
+                    message[i-passed].pop(len(message[i-passed])-1)
+                    break
+                else:
+                    message[i].pop(0)
+                    if not message[i]: message[i] = None
+                    lenFaltante -= 1
+                # for x in range(lenFaltante): message[i].pop(0)
         passed = 1
 
     # Tira-se os indices None (nulos)
