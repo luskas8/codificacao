@@ -9,40 +9,33 @@ def main():
 > 2. Decriptografar
 > 0. Sair\n
 Escolha: """
-
-    loop = True # Controla se esta ou não em loop, default: em loop
-    escolha = 0 # Controla escolha do usuário
-
-    os.system('cls' if os.name == 'nt' else 'clear')
-    while loop:
+    
+    while True:
         escolha = int(input(options))
         if escolha == 1:
             choiceOne()
         elif escolha == 2:
             choiceTwo()
         else:
-            os.system('cls' if os.name == 'nt' else 'clear')
             print("Obrigado por usar nosso programa, até uma outra vez :)\n")
-            exit()
+            break
     
 def choiceOne():
     mensagem = input("\nInforme sua mensagem: ")
-    semiCripto = ec.semiCriptografar(mensagem) #morte ao miojo # Mensagem transformada em ASCII
+    semiCripto = ec.semiCriptografar(mensagem) # Mensagem transformada em ASCII
     
-    n = int(input("Informe o número n: ")) # número e da chave pública
+    n = int(input("Informe o número n: ")) # número 'n' (chave pública)
 
-    e = int(input("nforme  o número e: ")) # número e usado na chave pública
+    e = int(input("Informe  o número e: ")) # número 'e' (chave pública)
 
     
     mensagemCriptografada = ec.criptografar(semiCripto, e, n)
 
-    # Limpa a tela e mostra as informações
-    # os.system('cls' if os.name == 'nt' else 'clear')
-    print("Chave pública, formato [n, e]: [{},{}]\n".format(n, e))
-    print("Bloco criptografada: {}\n".format(mensagemCriptografada))
+    print("Chaves públicas no formato [n, e]: [{}, {}]\n".format(n, e))
+    print("Blocos criptografados: {}\n".format(mensagemCriptografada))
 
 def choiceTwo():
-    mensagem = input("\nEntre com os blocos, separados por espaco: ")
+    mensagem = input("\nEntre com os blocos criptografados, separados por espaco: ")
     mensagem = mensagem.split()
     mensagem = [int(i) for i in mensagem]
 
