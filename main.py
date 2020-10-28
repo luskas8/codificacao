@@ -49,10 +49,10 @@ def choiceTwo():
     d = int(input("Entre com o valor de d (chave privada): "))
     n = int(input("Entre com o valor de n (chave publica): "))
     
+    # aplica a descriptografia e transforma em uma string sem espaços
     raw_decrypt = "".join([str((i**d) % n) for i in mensagem])
 
     decrypt = []
-    k = 0
     i = 0
     
     while i < len(raw_decrypt):
@@ -62,7 +62,6 @@ def choiceTwo():
         else:
             decrypt.append(int(raw_decrypt[i:i+3]))
             i += 3
-        k += 1
             
     decrypt = "".join([chr(i) for i in decrypt])
 

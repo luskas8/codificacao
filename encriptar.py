@@ -33,20 +33,19 @@ def criptografar(m: list, e: int, n: int) -> list:
         if (len(message[i]) < lenFaltante):
             # Se o espaço faltante é maior q o indice atual
             # coloca-se ele inteiro no grupo e passa ao indice posterior
-            # lenFaltante -= len(message[i])
             for j in range(len(message[i])):
                 if lenFaltante <= 0: break
                 aux = message[i][0]
                 message[i-passed].extend(aux)
+                # verifica se o numero é maior que N
                 if (int("".join(message[i-passed])) > n):
+                    # reverte o processo caso não seja
                     message[i-passed].pop(len(message[i-passed])-1)
                     break
                 else:
                     message[i].pop(0)
                     lenFaltante -= 1
                     if not message[i]: message[i] = None
-            # message[i-passed].extend(message[i])
-            # message[i] = None
         else:
         # Caso falso, passa-se todos os espaços que são necessários
             while lenFaltante > 0:
@@ -62,18 +61,16 @@ def criptografar(m: list, e: int, n: int) -> list:
                 # for x in range(lenFaltante): message[i].pop(0)
         passed = 1
 
-    # Tira-se os indices None (nulos)
-    newMessege = [number for number in message if number != None and len(number) > 0]
+    # Tira-se os indices None (nulos) e transforma em inteiro
+    newMessege = [int("".join(number)) for number in message if number != None and len(number) > 0]
     
-    # Transforma as listas em strings
-    for i in range(len(newMessege)):
-        newMessege[i] = int("".join(newMessege[i]))
-    
+    stringReturn = ""
     # Transforma strings em números
     for i in range(len(newMessege)):
-        newMessege[i] = (newMessege[i] ** e) % n
+        newMessege[i] = str((newMessege[i] ** e) % n)
+        stringReturn += newMessege[i]+" "
 
-    return newMessege
+    return stringReturn
 
 def contaAlgarismo(n):
     # Conta quantos algarismos o número n tem
