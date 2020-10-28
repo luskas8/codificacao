@@ -58,7 +58,6 @@ def criptografar(m: list, e: int, n: int) -> list:
                     message[i].pop(0)
                     if not message[i]: message[i] = None
                     lenFaltante -= 1
-                # for x in range(lenFaltante): message[i].pop(0)
         passed = 1
 
     # Tira-se os indices None (nulos) e transforma em inteiro
