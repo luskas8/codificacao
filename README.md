@@ -1,6 +1,6 @@
 # Criptografia RSA
 
-Projeto de desenvolvimento de um algoritmo capaz de utilizar-se da criptografia RSA para encriptar e descriptografar mensagens.
+Projeto de desenvolvimento de um algoritmo capaz de utilizar-se da criptografia RSA para encriptar e decriptar mensagens.
 
 ## Referência
 
